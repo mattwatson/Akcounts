@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+
+  <class name="Akcounts.Domain.Item, Akcounts.Domain" table="Items" >
+    <id name="Id">
+      <generator class="guid" />
+    </id>
+    <many-to-one name="TransactionId" not-null="true" outer-join="true"  foreign-key="fk_Transaction"/>
+    <many-to-one name="Source" not-null="true" outer-join="true" foreign-key="fk_Source_Account" />
+    <many-to-one name="Destination" not-null="true" outer-join="true" foreign-key="fk_Destination_Account" />
+    <property name="Value" not-null="true" />
+    <property name="Description" not-null="false" length="200" />
+    <property name="IsVerified" not-null="true" />
+  </class>
+
+</hibernate-mapping>

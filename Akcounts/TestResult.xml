@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Dev\Akcounts\trunk\Akcounts\Akcounts_tests.nunit" total="45" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2011-02-21" time="05:18:34">
+  <environment nunit-version="2.5.9.10348" clr-version="2.0.50727.4952" os-version="Microsoft Windows NT 6.1.7600.0" platform="Win32NT" cwd="C:\Program Files (x86)\NUnit 2.5.9\bin\net-2.0" machine-name="BEHEMOSQL" user="Matt" user-domain="BehemoSQL" />
+  <culture-info current-culture="en-GB" current-uiculture="en-US" />
+  <test-suite type="Project" name="C:\Dev\Akcounts\trunk\Akcounts\Akcounts_tests.nunit" executed="True" result="Success" success="True" time="0.439" asserts="0">
+    <results>
+      <test-suite type="Assembly" name="C:\Dev\Akcounts\trunk\Akcounts\Akcounts.Domain.Tests\bin\Debug\Akcounts.Domain.Tests.dll" executed="True" result="Success" success="True" time="0.273" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Akcounts" executed="True" result="Success" success="True" time="0.271" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="Domain" executed="True" result="Success" success="True" time="0.266" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.260" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="Account_spec" executed="True" result="Success" success="True" time="0.176" asserts="0">
+                        <results>
+                          <test-suite type="ParameterizedTest" name="Account_can_be_marked_as_enabled_or_disabled" executed="True" result="Success" success="True" time="0.047" asserts="0">
+                            <results>
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.Account_can_be_marked_as_enabled_or_disabled(True)" executed="True" result="Success" success="True" time="0.037" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.Account_can_be_marked_as_enabled_or_disabled(False)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.can_change_AccountType_on_an_Account" executed="True" result="Success" success="True" time="0.004" asserts="2" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.can_create_new_Account" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="cannot_create_new_Account_with_no_name" executed="True" result="Success" success="True" time="0.014" asserts="0">
+                            <results>
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_create_new_Account_with_no_name(null)" executed="True" result="Success" success="True" time="0.006" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_create_new_Account_with_no_name(&quot;&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_create_new_Account_with_no_name(&quot;   &quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_create_new_Account_with_null_type" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="cannot_set_name_to_blank_or_null" executed="True" result="Success" success="True" time="0.020" asserts="0">
+                            <results>
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_set_name_to_blank_or_null(&quot;&quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_set_name_to_blank_or_null(&quot;   &quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_set_name_to_blank_or_null(null)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.cannot_set_the_account_type_to_null" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.changing_the_AccountType_of_an_Account_removes_it_from_the_old_collection_and_adds_it_to_the_new" executed="True" result="Success" success="True" time="0.020" asserts="4" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.List_of_types_updated_correctly" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.newly_created_Account_is_enabled" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.setting_the_AccountType_of_an_Account_also_adds_the_Account_to_the_AccountTypes_Accounts_collection" executed="True" result="Success" success="True" time="0.002" asserts="4" />
+                          <test-case name="Akcounts.Domain.Tests.Account_spec.to_string_function_is_the_same_as_name" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                        </results>
+                      </test-suite>
+                      <test-suite type="TestFixture" name="AccountType_spec" executed="True" result="Success" success="True" time="0.076" asserts="0">
+                        <results>
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.Account_type_changes_are_tracked_properly" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.adding_the_Account_to_the_Accounts_collection_has_no_effect_if_it_was_already_there" executed="True" result="Success" success="True" time="0.002" asserts="4" />
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.Can_create_new_accountType" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_add_an_Account_directly_to_the_Accounts_collection" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_add_an_account_to_the_accounts_collection_if_it_does_not_have_the_correct_type" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-suite type="ParameterizedTest" name="cannot_create_new_AccountType_with_no_name" executed="True" result="Success" success="True" time="0.018" asserts="0">
+                            <results>
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_create_new_AccountType_with_no_name(&quot;&quot;)" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_create_new_AccountType_with_no_name(null)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_create_new_AccountType_with_no_name(&quot;   &quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_remove_an_Account_directly_from_the_Accounts_collection" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                          <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_remove_an_account_from_the_Accounts_collection_if_it_still_has_Type_property_set" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+                          <test-suite type="ParameterizedTest" name="cannot_set_AccountType_name_to_blank_or_null" executed="True" result="Success" success="True" time="0.014" asserts="0">
+                            <results>
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_set_AccountType_name_to_blank_or_null(&quot;&quot;)" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_set_AccountType_name_to_blank_or_null(&quot;   &quot;)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                              <test-case name="Akcounts.Domain.Tests.AccountType_spec.cannot_set_AccountType_name_to_blank_or_null(null)" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                            </results>
+                          </test-suite>
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+      <test-suite type="Assembly" name="C:\Dev\Akcounts\trunk\Akcounts\Akcounts.DataAccess.Tests\bin\Debug\Akcounts.DataAccess.Tests.dll" executed="True" result="Success" success="True" time="0.137" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="Akcounts" executed="True" result="Success" success="True" time="0.131" asserts="0">
+            <results>
+              <test-suite type="Namespace" name="DataAccess" executed="True" result="Success" success="True" time="0.129" asserts="0">
+                <results>
+                  <test-suite type="Namespace" name="Tests" executed="True" result="Success" success="True" time="0.123" asserts="0">
+                    <results>
+                      <test-suite type="TestFixture" name="AccountRepository_spec" executed="True" result="Success" success="True" time="0.119" asserts="0">
+                        <results>
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.can_add_multiple_new_account" executed="True" result="Success" success="True" time="0.012" asserts="15" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.can_add_new_account" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.Can_delete_existing_account" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.Can_get_all" executed="True" result="Success" success="True" time="0.006" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.Can_get_all_remove_all_then_add_some_more_then_get_all_again" executed="True" result="Success" success="True" time="0.018" asserts="16" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.can_get_existing_account_by_id" executed="True" result="Success" success="True" time="0.012" asserts="2" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.Can_get_existing_account_by_type" executed="True" result="Success" success="True" time="0.012" asserts="4" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.can_update_existing_account" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.can_update_existing_account_without_changing_name" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.deleting_account_that_does_not_exist_causes_AccountNotFoundException" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.inserting_account_with_same_name_as_existing_account_causes_AccountAlreadyExistsException" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.inserting_same_account_twice_causes_AccountAlreadyExistsException" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.trying_to_get_a_non_existent_account_by_id_causes_AccountNotFoundException" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.updating_a_non_existing_account_causes_AccountNotFoundException" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                          <test-case name="Akcounts.DataAccess.Tests.AccountRepository_spec.updating_that_would_create_a_duplicate_causes_AccountAlreadyExistsException" executed="True" result="Success" success="True" time="0.002" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
+                </results>
+              </test-suite>
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

@@ -1,0 +1,9 @@
+﻿<NUnitProject>
+  <Settings activeconfig="Debug" />
+  <Config name="Debug" binpathtype="Auto">
+    <assembly path="Akcounts.Domain.Tests\bin\Debug\Akcounts.Domain.Tests.dll" />
+    <assembly path="Akcounts.DataAccess.Tests\bin\Debug\Akcounts.DataAccess.Tests.dll" />
+    <assembly path="Akcounts.UI.Tests\bin\Debug\Akcounts.UI.Tests.dll" />
+  </Config>
+  <Config name="Release" binpathtype="Auto" />
+</NUnitProject>

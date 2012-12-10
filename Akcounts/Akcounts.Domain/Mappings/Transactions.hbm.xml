@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+
+  <class name="Akcounts.Domain.Transaction, Akcounts.Domain" table="Transactions">
+    <id name="Id">
+      <generator class="guid" />
+    </id>
+    <property name="BusinessKey" not-null="true" unique="true" />
+    <property name="Date" not-null="true" />
+    <property name="Description" not-null="false" length="100" />
+    <property name="IsVerified" not-null="true" />
+
+    <set name ="Items" inverse="true">
+      <key column="TransactionId"/>
+      <one-to-many class="Akcounts.Domain.Item, Akcounts.Domain"/>
+    </set>
+
+  </class>
+
+</hibernate-mapping>

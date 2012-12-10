@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Akcounts.Domain.Account">
+    <Position X="3" Y="0.5" Width="2" />
+    <Members>
+      <Property Name="ItemsDestination" Hidden="true" />
+      <Method Name="ItemsDestinationCount" Hidden="true" />
+      <Field Name="itemsSource" Hidden="true" />
+      <Property Name="ItemsSource" Hidden="true" />
+      <Method Name="ItemsSourceCount" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>ggAAIIAAAAAAAAUECAMAAAQAABKAAAAIAQAEAIAgCAA=</HashCode>
+      <FileName>Objects\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Akcounts.Domain.AccountTag">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\AccountTag.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Akcounts.Domain.AccountType">
+    <Position X="0.5" Y="3" Width="2.25" />
+    <Members>
+      <Property Name="IsDestination" Hidden="true" />
+      <Property Name="IsSource" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAAAIAAAAAAQQAAAAAgAAAQAAAAAAACAAAACAAAAAEA=</HashCode>
+      <FileName>Objects\AccountType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Akcounts.Domain.Journal">
+    <Position X="7.75" Y="0.5" Width="2" />
+    <Members>
+      <Property Name="BusinessKey" Hidden="true" />
+      <Method Name="ItemCount" Hidden="true" />
+      <Field Name="items" Hidden="true" />
+      <Property Name="Items" Hidden="true" />
+      <Method Name="Journal" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAACAgGAAEBAiAABIAEAABAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Objects\Journal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Akcounts.Domain.Transaction">
+    <Position X="5.25" Y="0.5" Width="2.25" />
+    <Members>
+      <Property Name="Description" Hidden="true" />
+      <Property Name="Destination" Hidden="true" />
+      <Property Name="DestinationName" Hidden="true" />
+      <Property Name="IsVerified" Hidden="true" />
+      <Method Name="SetDestination" Hidden="true" />
+      <Method Name="SetDestinationLazy" Hidden="true" />
+      <Method Name="SetSource" Hidden="true" />
+      <Method Name="SetSourceLazy" Hidden="true" />
+      <Method Name="SetTransaction" Hidden="true" />
+      <Property Name="Source" Hidden="true" />
+      <Property Name="SourceName" Hidden="true" />
+      <Property Name="TransactionDate" Hidden="true" />
+      <Property Name="TransactionDesc" Hidden="true" />
+      <Property Name="TransactionId" Hidden="true" />
+      <Property Name="TVerified" Hidden="true" />
+      <Property Name="Value" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>KAAYCAAAAgAgQoAgACgAAICAEAAgAAAEAABpECEAQkA=</HashCode>
+      <FileName>Objects\Transaction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

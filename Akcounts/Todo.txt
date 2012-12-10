@@ -1,0 +1,170 @@
+Defects
+F	Cannot update account maintenence screen so that 2 accounts have the same name =(
+F	(symptom when adding 2 accounts using the special button too)
+F	If you add 2 accounts with no name, and edit one so it has a name (and should be valid) it is not saved when saving... it is never added
+F	Disable Button doesn't work - not really sure why this didn't work...
+F	Adding new account (with id 0), then saving causes an exception cause it can't find id 0... probably will go away when i get rid of readonly
+F	Make Account Maintenance screen redraw when it's opened
+F	Seems to be an issue with deleting transactions out of a journal (causes crash consistently)
+F	Has been edited needs to be set to true if the value has been entered previously
+F	Non valid journals should be allowed to save!!! FIZZLE
+	Weird problem when editing a date and the switching tabs - i.e. transfers value to the date picker in the new tab.
+	Can click verify when editing things (even when they are in invalid)
+	When you edit amount to a really small numbers - they are valid but display as 0.00. Might want to round them off.
+	When you delete an account it doesn't delete the transactions.
+
+Questions
+?	Perhaps Id should be set once (and readonly after that)
+X	Does Transaction even need an id?
+
+Major issues
+
+
+Next Tasks
+X	Do an refreshValidstatus method on the journal view model that can somehow be called by the transaction view models... (every edit to a transaction could make the journal valid)
+X	extract DeletableViewModel - remove all testing for this in normal viewmodels, and test it in another _spec
+X	Get all unit tests working
+X	improve coverage to maximum
+X	Transaction and Journal: Loading with the application
+X	Bring Journal repository up to standard of account
+X	Get rid of Transactions as a separate thing to journals in the data access layer
+X	Get rid of JournalId from transactions? They always have an actual Journal, right?
+X	delete verify pending transactions
+X	Get rid of transactions.xml and the parsing of it
+X	Display an Account View - and get it working well enough so I can use it to reconcile against statements
+X	Push IsVerified down the transaction level
+X	Fix tab order on Journal entry screen
+X	Relax equality of in and out before being able to verify an account (suggest 0.00001 tollerance)
+X	Auto select contents of value text boxes
+X	Sort accounts in dropdown (or maybe in the repository?)
+X	Autosave when closing
+X	Finish refactoring initialisation of repositories
+X	Get rid of Journals pending verification
+	Refactor GUI to make it better (less repetition)
+	Consolodate unecessary transactions automatically (might need to be a bit careful with this!!)
+	Increase code coverage
+
+Template
+Basically a monthly look at fixed payments. 
+X	- Change Budget to Template
+X	- Can implement as a collection of journals that can be freely added to and removed.
+X	- Make it so they aways show so that the seed dates are always correct.
+X	- Save template when saving other data
+X	- Create screen to show templated journals
+X	- Add a button to stamp the journal down (auto increments the month by 1) 
+X		- Might want to put the journal inside another little container?
+X		- Some of the properties, you need to not 'stamp down'. e.g. whether it is verified
+X	- Add ability to delete Journals
+X	- Ability to Remove Journals from template
+X	- Ability to Add Journals to template
+	- New Journal ViewModel Mode? Rolled up...
+	- Template items can be turned on/off for views/reports/graphs.
+	- Have an 'Add to Template' button on the journal screen? Probably not
+	
+	- Could try to encode a period in the template - i.e. TV license every year. Water bill every 6 months etc
+
+Budget
+	- Allocate a set amount of money per 'pay month' (which you will also need to implement) that shows start value, and what's been 
+	  spent so far
+
+Journal Maintenance?
+New screen to show journals that are unverified, with a bit of filtering 
+  - Basically like WatsonFinancials main screen. Pretty easy to do, and useful for verifying/adding across all accounts
+
+Reporting screen
+X	Current balances of all accounts
+	Same view as the excel pivot table thing I had 
+X	  - might be a problem to calculate all of this every time I open the screen.
+X	  - so will probably have to be a little bit careful what is included on this screen.
+  - Could make it very specific rather than a general reporting tool.
+  - Don't forget the AccountTags concept! i.e allowing tags to be selected and arranging everything that is in any of those categories by the first match
+
+	Requirements
+X	- View balances of all Asset and Liability accounts (i.e Net worth)
+	- Proper Net worth - i.e. Sum of Assets/Liabilities
+	- Current Balances (i.e. hide all disabled accounds)
+	- graph of this over time
+	- For all income/expense accounts, Yearly/monthly/daily break-down of what's been earned/spent
+		- Possibly with expandable/contractable timescales?
+	
+
+
+Account Browser screen
+X	Allow you to choose account (left/right and drop down list)
+X	When displaying transactions in accounts Browser screen if there are only 2 transactions, show the other account name in the description field. Might be a bit slow?
+X	Remembering ordering (or at least Auto order)
+X	Allow editing of transactions/journals through viewModel (sick!)
+X	Hook up filters
+X	Quicker way to switch accounts
+X	Display if this transaction is part of a locked transaction (and prevent editting?)
+X	Maybe put filters on top bar along with the name of the currently displayed account ?
+X	Date filters?
+	Stop reloading everytime you return to the screen - only do it if something has changed - using an event to find out?
+	Allow more than one account to be displayed simultaneously - fancy that!
+	Change the interface out of the curvey box thing?
+	Make it coloured differently by account type?
+
+	
+
+TransactionViewModel
+X	- Ability to delete
+X	- Only the valid amount box is visible
+X	- Everything triggers an event when it is edited (subscribed to by journal viewmodel)
+X	- deciding if it's an in or an out. A toggle button I think, 
+X	- edit amount
+X	- edit note
+X	- change account (we'll need an accountrepository here then!?)
+X	- background colour indicates if it's valid or not
+X	- order account names alphabetically
+	- Only show enabled accounts in the account dropdown? Might be a bit annoying, so maybe have the ability to show them, or show them at the bottom? 
+
+JournalViewModel
+X	- JournalRepository tracks journals pending verification when they are loaded from XML.
+X	- At a later point (i.e. after transactions have been loaded), the VerfifyPendingJournals can be executed on the Journal repository, which goes through all pending journals, and marks them as IsVerfied.
+X	- If it fails at this point, the exceptions is not caught.
+X	- Ability to Add new Transaction
+X	- Ability to Add In or Add Out Transaction
+X	- All actions are disabled if the journal is verified
+X	- Verification button is only enabled when the journal is valid
+X	- Verification (and consequential locking of all the controls)
+X	- Saving to Repository happens automatically the instant an edit is made that results in a valid journal
+?	- Behaviour of close tab is different depending on validity - If not valid get a 'discard changes' if valid just works.
+X	- Deleting Journal (before and after it has been committed)
+X	- When editing a journal - if there is 1 other transaction that has not been edited manually set it to equalize the journal (cool!)
+X	- Flip the out and in text boxes around.
+X	- Show which transactions have been verified (don't think we should be able to verify on this screen though. 
+
+AccountMaintenance screen
+	Considering completly redoing this screen as a grid view or similar - it's very slow, and a bit difficult to see much on it.
+X	- Scroll bar
+X	- Provide Mechanism to be able to close AccountMaintenanceScreen - possibly using WorkspaceViewModel pattern
+X	- Hook up enter for ok and esc for cancel commands when editing an account name
+	- Filter search parameters (name, isEnabled)
+	- Some way to add AccountTags to an AccountViewModel
+	- Ability to reorder AccountTags of an AccountViewModel
+	- delete button only enabled/visible if the account has no items
+	- Get the transfer button functional (including only being enabled/visible if the account has items)
+	- After adding new account - move cursor to account name and highlight all text http://msdn.microsoft.com/en-us/library/aa969768.aspx
+	- Link to open the account transactions.
+
+MainWindow
+X	- Add new Journal button?
+X	- View Accounts screen
+X	- Load all the journals.
+X	- Load all the transactions, populating the accounts, and journals
+
+General
+X	- JournalIsVerified on Transaction should actually just be IsLocked - and then prevents you from editting the transaction in the viewmodel, but perhaps have the ability to unlock?
+	- Not sure if saves should be done by the repository.
+X	- Save repository checks IsValid on all instances and only saves if everything is valid - poor choice. Repositories should only contain things that can be saved. Want to save it all
+
+Might want to think about tags and accounts. Should we validate all tags, before saving an account, or even doing an 
+IsValid on an account? Dont want missing tags, or at least want to handle them nicely
+
+Think about accessibility of the domain level methods
+
+Consider making everything serializable - not really going to add much benefit
+
+Add proper validation (rather than just throwing exceptions)
+
+Do Nhibernate repositories (perhaps with sqllite in memory for testing?)

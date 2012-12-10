@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+
+  <class name="Akcounts.Domain.AccountCategory, Akcounts.Domain" table="AccountCategories">
+    <id name="Id">
+      <generator class="guid" />
+    </id>
+    <property name="Name" not-null="true" length ="50" unique="true"/>
+    <property name="Colour" length ="50" not-null="false"/>
+    <property name="IsValid" not-null="true"/>
+
+    <set name ="Accounts" inverse="true">
+      <key column="Category"/>
+      <one-to-many class="Akcounts.Domain.Account, Akcounts.Domain"/>
+    </set>
+
+  </class>
+
+</hibernate-mapping>

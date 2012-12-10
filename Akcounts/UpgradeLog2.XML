@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Akcounts">
+</Property><Property Name="Solution File" Value="D:\Dev\Akcounts\Akcounts\Akcounts.sln">
+</Property><Property Name="Date" Value="05 October 2010">
+</Property><Property Name="Time" Value="00:20:55">
+</Property><Property Name="Log Number" Value="2">
+</Property></Properties><Event ErrorLevel="0" Project="WatsonFinancials.DataAccess.Tests" Source="Akcounts.DataAccess.Tests\WatsonFinancials.DataAccess.Tests.csproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="WatsonFinancials.DataAccess.Tests" Source="Akcounts.DataAccess.Tests\WatsonFinancials.DataAccess.Tests.csproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="WatsonFinancials.DataAccess.Tests" Source="Akcounts.DataAccess.Tests\WatsonFinancials.DataAccess.Tests.csproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>
