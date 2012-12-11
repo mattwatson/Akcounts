@@ -78,7 +78,7 @@ namespace Akcounts.DataAccess.Repositories
             }
         }
 
-        protected override string EntityNames
+        public override string EntityNames
         {
             get { return "journals"; }
         }

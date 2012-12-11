@@ -99,7 +99,7 @@ namespace Akcounts.DataAccess.Repositories
             return !NameAlreadyExists(name, account.Id);
         }
 
-        protected override string EntityNames
+        public override string EntityNames
         {
             get { return "accounts"; }
         }

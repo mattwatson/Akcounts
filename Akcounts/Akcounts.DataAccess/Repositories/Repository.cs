@@ -64,7 +64,7 @@ namespace Akcounts.DataAccess.Repositories
             else throw new EntityNotFoundException();
         }
 
-        protected abstract string EntityNames
+        public abstract string EntityNames
         {
             get;
         }
@@ -73,8 +73,7 @@ namespace Akcounts.DataAccess.Repositories
         {
             return new XStreamingElement(EntityNames,
                 from entity in Entities.Values
-                select entity.EmitXml()
-                );
+                select entity.EmitXml());
         }
 
         //TODO Could possibly do some testing - particularly rainy day cases

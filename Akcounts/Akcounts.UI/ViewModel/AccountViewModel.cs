@@ -483,7 +483,6 @@ namespace Akcounts.UI.ViewModel
 
         ////OLD CODE
         ////      bool _isSelected;
-        ////      RelayCommand _saveCommand;
 
         /////// <summary>
         /////// Gets/sets whether this account is selected in the UI.
@@ -502,21 +501,6 @@ namespace Akcounts.UI.ViewModel
         ////    }
         ////}
         
-        ////public ICommand SaveCommand
-        ////{
-        ////    get
-        ////    {
-        ////        if (_saveCommand == null)
-        ////        {
-        ////            _saveCommand = new RelayCommand(
-        ////                param => this.Save(),
-        ////                param => this.CanSave
-        ////                );
-        ////        }
-        ////        return _saveCommand;
-        ////    }
-        ////}
-
         ////public void Save()
         ////{
         ////    //if (!_account.IsValid)

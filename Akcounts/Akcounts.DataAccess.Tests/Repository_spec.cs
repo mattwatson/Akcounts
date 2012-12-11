@@ -208,7 +208,7 @@ namespace Akcounts.DataAccess.Tests
     {
         protected override void Initialise(XElement xElement) { }
 
-        protected override string EntityNames
+        public override string EntityNames
         {
             get { return "testEntities"; }
         }

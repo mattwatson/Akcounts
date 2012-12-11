@@ -9,10 +9,13 @@ namespace Akcounts.Domain.RepositoryInterfaces
         T GetById(int id);
         IEnumerable<T> GetAll();
 
+        string EntityNames { get; }
+
         void Save(T entity);
         void Remove(T entity);
 
         XStreamingElement EmitXml();
+
         void WriteXmlFile(string accountDataPath);
 
         event EventHandler RepositoryModified;
