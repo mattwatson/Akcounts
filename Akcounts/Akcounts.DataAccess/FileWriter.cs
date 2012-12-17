@@ -1,4 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Akcounts.Domain.RepositoryInterfaces;
 
 namespace Akcounts.DataAccess
@@ -18,11 +21,40 @@ namespace Akcounts.DataAccess
             _journalRepository = journalRepository;
         }
 
-        public void WriteAccountFile(string testDirectory)
+        public void WriteAccountFile(string targetDirectory)
         {
-            var path = Path.Combine(testDirectory, _accountRepository.EntityNames + ".xml");
-            var xml = _accountRepository.EmitXml();
-            xml.Save(path);
+            var entityNames = _accountRepository.EntityNames;
+            var path = Path.Combine(targetDirectory, entityNames + ".xml");
+            var newFileContents = _accountRepository.EmitXml().ToString();
+
+            if (File.Exists(path))
+            {
+                var existingFileContents = File.ReadAllText(path);
+                if (existingFileContents == newFileContents)
+                {
+                    return;
+                }
+
+                var backupFolder = Path.Combine(targetDirectory, @"backup\");
+                Directory.CreateDirectory(backupFolder);
+
+                var fileNumber = GetFileNumber(backupFolder, entityNames);
+                var backupFileName = String.Format("{0}.backup-{1}.xml", entityNames, fileNumber);
+
+                var backupPath = Path.Combine(backupFolder, backupFileName);
+                File.Move(path, backupPath);
+            }
+            
+            File.WriteAllText(path, newFileContents);
+        }
+
+        private int GetFileNumber(string backupFolder, string entityNames)
+        {
+            var files = Directory.GetFiles(backupFolder, String.Format("*{0}*", entityNames));
+
+            var maxFileNumber = files.Select(file => Int32.Parse(Regex.Match(file, @"(\d+)").Value)).Concat(new[] {0}).Max();
+            
+            return maxFileNumber + 1;
         }
     }
 }
