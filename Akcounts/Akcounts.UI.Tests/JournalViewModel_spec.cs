@@ -145,10 +145,11 @@ namespace Akcounts.UI.Tests
             Assert.IsTrue(_journal.Transactions.Contains(_tran1));
             Assert.IsFalse(_journal.Transactions.Contains(_tran2));
 
-            Assert.AreEqual(2, _changeCounter.NoOfPropertiesChanged);
-            Assert.AreEqual(2, _changeCounter.TotalChangeCount);
+            Assert.AreEqual(3, _changeCounter.NoOfPropertiesChanged);
+            Assert.AreEqual(3, _changeCounter.TotalChangeCount);
             Assert.AreEqual(1, _changeCounter.ChangeCount("Transactions"));
             Assert.AreEqual(1, _changeCounter.ChangeCount("IsValid"));
+            Assert.AreEqual(1, _changeCounter.ChangeCount("DeleteJournalVisibility"));
 
             _mocks.VerifyAllExpectationsHaveBeenMet();
         }
@@ -180,10 +181,11 @@ namespace Akcounts.UI.Tests
             Assert.IsFalse(transactionVMs.Contains(tranVM1));
             Assert.IsTrue(transactionVMs.Contains(tranVM2));
 
-            Assert.AreEqual(2, _changeCounter.NoOfPropertiesChanged);
-            Assert.AreEqual(2, _changeCounter.TotalChangeCount);
+            Assert.AreEqual(3, _changeCounter.NoOfPropertiesChanged);
+            Assert.AreEqual(3, _changeCounter.TotalChangeCount);
             Assert.AreEqual(1, _changeCounter.ChangeCount("Transactions"));
             Assert.AreEqual(1, _changeCounter.ChangeCount("IsValid"));
+            Assert.AreEqual(1, _changeCounter.ChangeCount("DeleteJournalVisibility"));
 
             _mocks.VerifyAllExpectationsHaveBeenMet();
         }
@@ -205,10 +207,11 @@ namespace Akcounts.UI.Tests
 
             Assert.AreEqual(previouscount + 1, _vm.Transactions.Count);
 
-            Assert.AreEqual(2, _changeCounter.NoOfPropertiesChanged);
-            Assert.AreEqual(2, _changeCounter.TotalChangeCount);
+            Assert.AreEqual(3, _changeCounter.NoOfPropertiesChanged);
+            Assert.AreEqual(3, _changeCounter.TotalChangeCount);
             Assert.AreEqual(1, _changeCounter.ChangeCount("Transactions"));
             Assert.AreEqual(1, _changeCounter.ChangeCount("IsValid"));
+            Assert.AreEqual(1, _changeCounter.ChangeCount("DeleteJournalVisibility"));
         }
 
         [Test]
@@ -228,10 +231,11 @@ namespace Akcounts.UI.Tests
 
             Assert.AreEqual(previouscount + 1, _vm.Transactions.Count);
 
-            Assert.AreEqual(2, _changeCounter.NoOfPropertiesChanged);
-            Assert.AreEqual(2, _changeCounter.TotalChangeCount);
+            Assert.AreEqual(3, _changeCounter.NoOfPropertiesChanged);
+            Assert.AreEqual(3, _changeCounter.TotalChangeCount);
             Assert.AreEqual(1, _changeCounter.ChangeCount("Transactions"));
             Assert.AreEqual(1, _changeCounter.ChangeCount("IsValid"));
+            Assert.AreEqual(1, _changeCounter.ChangeCount("DeleteJournalVisibility"));
         }
 
         [Test]
