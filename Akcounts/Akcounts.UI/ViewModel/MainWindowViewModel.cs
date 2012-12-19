@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using Akcounts.DataAccess;
 using Akcounts.Domain.Objects;
 using Akcounts.Domain.RepositoryInterfaces;
 using Akcounts.UI.Util;
@@ -11,10 +12,13 @@ namespace Akcounts.UI.ViewModel
 {
     public class MainWindowViewModel : WorkspaceViewModel, IMainWindowViewModel
     {
+        private const string TargetDirectory = @".\data";
         private readonly IAccountTagRepository _accountTagRepository;
         private readonly IAccountRepository _accountRepository;
         private readonly IJournalRepository _journalRepository;
         private readonly ITemplateRepository _templateRepository;
+
+        private readonly FileWriter _fileWriter;
 
         ObservableCollection<WorkspaceViewModel> _workspaces;
 
@@ -35,6 +39,8 @@ namespace Akcounts.UI.ViewModel
             _accountRepository.RepositoryModified += OnRepositoryModified;
             _journalRepository.RepositoryModified += OnRepositoryModified;
             _templateRepository.RepositoryModified += OnRepositoryModified;
+
+            _fileWriter = new FileWriter(_accountRepository, accountTagRepository, _templateRepository, _journalRepository);
 
             _monthlyBreakdownScreenOpener = new ScreenOpener(OpenMonthlyBreakdownScreen);
             _accountBrowserScreenOpener = new ScreenOpener(OpenAccountBrowserScreen);
@@ -68,7 +74,6 @@ namespace Akcounts.UI.ViewModel
             AddVmToWorkSpacesAndDisplay(vm, closeEventHandler);
         }
 
-
         public ICommand OpenMonthlyBreakdownScreenCommand
         {
             get { return _monthlyBreakdownScreenOpener.OpenCommand; }
@@ -76,11 +81,10 @@ namespace Akcounts.UI.ViewModel
 
         private void OpenMonthlyBreakdownScreen(EventHandler closeEventHandler)
         {
-            var vm = new MonthlyBreakdownViewModel(_accountRepository);////, _templateRepository);
+            var vm = new MonthlyBreakdownViewModel(_accountRepository);
             AddVmToWorkSpacesAndDisplay(vm, closeEventHandler);
         }
-
-
+        
         public ICommand OpenTemplateScreenCommand {
             get { return _templateScreenOpener.OpenCommand; }
         }
@@ -90,8 +94,7 @@ namespace Akcounts.UI.ViewModel
             var vm = new TemplateViewModel(_templateRepository, _journalRepository, _accountRepository);
             AddVmToWorkSpacesAndDisplay(vm, closeEventHandler);
         }
-
-
+        
         RelayCommand _openNewJournalScreen;
         public ICommand OpenNewJournalScreenCommand
         {
@@ -104,8 +107,7 @@ namespace Akcounts.UI.ViewModel
             var vm = new JournalViewModel(newJournal, _journalRepository, _accountRepository);
             AddVmToWorkSpacesAndDisplay(vm, null);
         }
-
-
+        
         public void OpenExistingJournalScreen(Journal journal)
         {
             var vm = new JournalViewModel(journal, _journalRepository, _accountRepository);
@@ -113,7 +115,6 @@ namespace Akcounts.UI.ViewModel
             vm.RequestDelete += DeleteJournal;
         }
         
-
         private void AddVmToWorkSpacesAndDisplay(WorkspaceViewModel vm, EventHandler closeEventHandler)
         {
             Workspaces.Add(vm);
@@ -141,10 +142,10 @@ namespace Akcounts.UI.ViewModel
 
         void OnRequestSave()
         {
-            _accountTagRepository.WriteXmlFile("data\\AccountTags.xml");
-            _accountRepository.WriteXmlFile("data\\Accounts.xml");
-            _journalRepository.WriteXmlFile("data\\Journals.xml");
-            _templateRepository.WriteXmlFile("data\\Template.xml");
+            _fileWriter.WriteAccountTagFile(TargetDirectory);
+            _fileWriter.WriteAccountFile(TargetDirectory);
+            _fileWriter.WriteJournalFile(TargetDirectory);
+            _fileWriter.WriteTemplateFile(TargetDirectory);
             
             IsSavePending = false;
         }

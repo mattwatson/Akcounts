@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 using Akcounts.Domain.RepositoryInterfaces;
 
 namespace Akcounts.DataAccess
@@ -24,13 +25,44 @@ namespace Akcounts.DataAccess
         public void WriteAccountFile(string targetDirectory)
         {
             var entityNames = _accountRepository.EntityNames;
-            var path = Path.Combine(targetDirectory, entityNames + ".xml");
-            var newFileContents = _accountRepository.EmitXml().ToString();
+            var fileContents = _accountRepository.EmitXml();
 
+            WriteFile(targetDirectory, entityNames, fileContents);
+        }
+
+        public void WriteAccountTagFile(string targetDirectory)
+        {
+            var entityNames = _accountTagRepository.EntityNames;
+            var fileContents = _accountTagRepository.EmitXml();
+
+            WriteFile(targetDirectory, entityNames, fileContents);
+        }
+
+        public void WriteJournalFile(string targetDirectory)
+        {
+            var entityNames = _journalRepository.EntityNames;
+            var fileContents = _journalRepository.EmitXml();
+
+            WriteFile(targetDirectory, entityNames, fileContents);
+        }
+
+        public void WriteTemplateFile(string targetDirectory)
+        {
+            var entityNames = _templateRepository.EntityNames;
+            var fileContents = _templateRepository.EmitXml();
+
+            WriteFile(targetDirectory, entityNames, fileContents);
+        }
+
+        private void WriteFile(string targetDirectory, string entityNames, XStreamingElement fileContents)
+        {
+            var fileContentsWithHeader = @"<?xml version=""1.0"" encoding=""utf-8""?>" + Environment.NewLine + fileContents;
+
+            var path = Path.Combine(targetDirectory, entityNames + ".xml");
             if (File.Exists(path))
             {
                 var existingFileContents = File.ReadAllText(path);
-                if (existingFileContents == newFileContents)
+                if (existingFileContents == fileContentsWithHeader)
                 {
                     return;
                 }
@@ -44,8 +76,8 @@ namespace Akcounts.DataAccess
                 var backupPath = Path.Combine(backupFolder, backupFileName);
                 File.Move(path, backupPath);
             }
-            
-            File.WriteAllText(path, newFileContents);
+
+            File.WriteAllText(path, fileContentsWithHeader);
         }
 
         private int GetFileNumber(string backupFolder, string entityNames)

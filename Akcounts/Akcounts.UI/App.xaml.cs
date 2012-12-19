@@ -21,8 +21,8 @@ namespace Akcounts.UI
 
         const string AccountTagDataPath = "Data/accountTags.xml";
         const string AccountDataPath = "Data/accounts.xml";
-        const string JournalDataPath = "Data/Journals.xml";
-        const string TemplateDataPath = "Data/Template.xml";
+        const string JournalDataPath = "Data/journals.xml";
+        const string TemplateDataPath = "Data/templates.xml";
 
         protected override void OnStartup(StartupEventArgs e)
         {

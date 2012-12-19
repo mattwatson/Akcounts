@@ -11,7 +11,7 @@
       <tag>4</tag>
     </tags>
   </account>
-   <account id="15" name="Current Account" type="1" isEnabled="true">
+  <account id="15" name="Current Account" type="1" isEnabled="true">
     <tags>
       <tag>13</tag>
     </tags>

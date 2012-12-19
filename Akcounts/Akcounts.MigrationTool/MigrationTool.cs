@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Xml;
 using System.Xml.Linq;
+using Akcounts.DataAccess;
 using Akcounts.DataAccess.Repositories;
 using Akcounts.Domain.RepositoryInterfaces;
 
@@ -17,8 +18,9 @@ namespace Akcounts.MigrationTool
             var importer = new SpreadsheetImporter(accountTagRepository, accountRepository, journalRepository);
             importer.ImportSpreadsheet("MigrationData.xls");
 
-            accountRepository.WriteXmlFile("Data\\AccountsAfterImport.xml");
-            journalRepository.WriteXmlFile("Data\\JournalsAfterImport.xml");
+            var fileWriter = new FileWriter(accountRepository, null, null, journalRepository);
+            fileWriter.WriteAccountFile(@".\\Data");
+            fileWriter.WriteJournalFile(@".\\Data");
         }
         
         private static AccountTagRepository InitialiseAccountTagRepository(string accountTagDataPath)

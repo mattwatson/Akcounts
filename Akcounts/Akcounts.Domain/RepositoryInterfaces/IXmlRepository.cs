@@ -16,8 +16,6 @@ namespace Akcounts.Domain.RepositoryInterfaces
 
         XStreamingElement EmitXml();
 
-        void WriteXmlFile(string accountDataPath);
-
         event EventHandler RepositoryModified;
     }
 }

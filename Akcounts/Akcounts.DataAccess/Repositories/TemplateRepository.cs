@@ -97,37 +97,5 @@ namespace Akcounts.DataAccess.Repositories
             var template = Entities[0];
             return template.Journals;
         }
-
-        //TODO Get rid of this beautiful code, unless you can find a use for it ;)
-        public IList<Journal> GetImaginaryJournals(DateTime startDate, DateTime endDate)
-        {
-            var templateJournals = new List<Journal>();
-
-            var template = Entities[0];
-            foreach (var journal in template.Journals)
-            {
-                //Start with the date after the journal was last used
-                var date = journal.Date.AddDays(1);
-
-                //Find the next occurrance of the template Journal that occurs after the startDate
-                while (startDate > date) date = date.AddMonths(1);
-
-                //Create all the necessary Journals until we go past the end date
-                while (date <= endDate)
-                {
-                    var newJournal = new Journal(0, date, journal.Description);
-                    foreach (var tran in journal.Transactions)
-                    {
-                        var newTran = new Transaction(newJournal, tran.Direction, null, tran.Amount, tran.Note);
-                        newTran.SetUnidirectionalAccount(tran.Account);
-                    }
-
-                    templateJournals.Add(newJournal);
-                    date = date.AddMonths(1);
-                }
-            }
-
-            return templateJournals;
-        }
     }
 }
