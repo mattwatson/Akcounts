@@ -1,4 +1,4 @@
-﻿namespace Akcounts.NewUI.Views
+﻿namespace Akcounts.NewUI.MainWindow
 {
     public partial class MainWindowView
     {
