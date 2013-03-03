@@ -63,7 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Accounts\AccountsViewModel.cs" />
+    <Compile Include="Accounts\AccountsWorkspaceViewModel.cs" />
     <Compile Include="Framework\IWorkspace.cs" />
     <Compile Include="MainWindow\AkcountsBootstrapper.cs" />
     <Compile Include="App.xaml.cs">
@@ -89,7 +89,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Page Include="Accounts\AccountsView.xaml">
+    <Page Include="Accounts\AccountsWorkSpaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

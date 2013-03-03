@@ -1,6 +1,7 @@
-﻿<UserControl x:Class="Akcounts.NewUI.Accounts.AccountsView"
+﻿<UserControl x:Class="Akcounts.NewUI.Accounts.AccountsWorkspaceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro">
     <Border BorderBrush="#FF590980"
 	        BorderThickness="2">
         <DockPanel>
@@ -18,6 +19,11 @@
 			           Margin="12"
 			           FontSize="20"
 			           Text="Accounts go here..." />
+
+            <!--<ContentControl cal:View.Context="{Binding State, Mode=TwoWay}"
+                            cal:View.Model="{Binding}" 
+                            Margin="20"
+                            Padding="20"/>-->
         </DockPanel>
     </Border>
 </UserControl>

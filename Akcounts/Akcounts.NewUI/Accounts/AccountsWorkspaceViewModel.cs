@@ -5,9 +5,9 @@ using Caliburn.Micro;
 namespace Akcounts.NewUI.Accounts
 {
     [Export(typeof(IWorkspace))]
-    class AccountsViewModel : Screen, IWorkspace
+    class AccountsWorkspaceViewModel : Screen, IWorkspace
     {
-        public AccountsViewModel()
+        public AccountsWorkspaceViewModel()
         {
             DisplayName = Label;
         }
