@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
+using Akcounts.NewUI.Accounts;
 using Akcounts.NewUI.Framework;
 using Akcounts.NewUI.Utils;
 using Caliburn.Micro;
@@ -27,10 +28,7 @@ namespace Akcounts.NewUI.MainWindow
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
             
-            //TODO add setup of viewmodels in the following style
-            //batch.AddExportedValue<Func<IMessageBox>>(() => container.GetExportedValue<IMessageBox>());
-            //batch.AddExportedValue<Func<CustomerViewModel>>(() => container.GetExportedValue<CustomerViewModel>());
-            //batch.AddExportedValue<Func<OrderViewModel>>(() => container.GetExportedValue<OrderViewModel>());
+            batch.AddExportedValue<Func<AccountViewModel>>(() => _container.GetExportedValue<AccountViewModel>());
             
             batch.AddExportedValue(_container);
 

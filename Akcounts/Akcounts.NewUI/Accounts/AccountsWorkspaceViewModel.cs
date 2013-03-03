@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.Composition;
+﻿using System;
+using System.ComponentModel.Composition;
 using Akcounts.NewUI.Framework;
 
 namespace Akcounts.NewUI.Accounts
@@ -6,6 +7,15 @@ namespace Akcounts.NewUI.Accounts
     [Export(typeof(IWorkspace))]
     class AccountsWorkspaceViewModel : DocumentWorkspace<AccountViewModel>
     {
+        private static int count = 1;
+        private readonly Func<AccountViewModel> createAccountViewModel;
+
+        [ImportingConstructor]
+        public AccountsWorkspaceViewModel(Func<AccountViewModel> accountVMFactory)
+        {
+           createAccountViewModel = accountVMFactory;
+        }
+
         public override string Label
         {
             get { return "Accounts"; }
@@ -15,23 +25,12 @@ namespace Akcounts.NewUI.Accounts
         {
             get { return "../Accounts/Resources/Images/account48.png"; }
         }
-
-        //TODO put 'new' logic in here like this:
-        //private static int count = 1;
-        //private readonly Func<OrderViewModel> createOrderViewModel;
-        //
-        //[ImportingConstructor]
-        //public OrdersWorkspaceViewModel(Func<OrderViewModel> orderVMFactory)
-        //{
-        //    createOrderViewModel = orderVMFactory;
-        //}
-        //
-        //public void New()
-        //{
-        //    var vm = createAccountViewModel();
-        //    vm.DisplayName = "Account " + count++;
-        //    vm.IsDirty = true;
-        //    Edit(vm);
-        //}
+        
+        public void New()
+        {
+            var vm = createAccountViewModel();
+            vm.DisplayName = "Account " + count++;
+            Edit(vm);
+        }
     }
 }

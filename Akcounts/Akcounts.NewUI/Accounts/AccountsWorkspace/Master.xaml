@@ -25,23 +25,17 @@
 			           FontSize="16"
 			           DockPanel.Dock="Top"
 			           Margin="4" />
-            <!--TODO implement list of open Accounts-->
-            <!--<ItemsControl x:Name="Items"
-			              Margin="4 0 0 0">
+            <ItemsControl x:Name="Items">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Horizontal"
-						            Margin="4">
-                            <Button Content="+"
-							        cal:Message.Attach="Edit($dataContext)" />
-                            <TextBlock Text="{Binding DisplayName, Mode=TwoWay}"
-							           VerticalAlignment="Center"
-							           Foreground="White"
-							           Margin="4 0 0 0" />
+                        <StackPanel Orientation="Horizontal">
+                            <Button cal:Message.Attach="Edit($dataContext)">
+                                <TextBlock Text="{Binding DisplayName, Mode=TwoWay}" />
+                            </Button>
                         </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
+            </ItemsControl>
         </DockPanel>
 
     </Grid>
