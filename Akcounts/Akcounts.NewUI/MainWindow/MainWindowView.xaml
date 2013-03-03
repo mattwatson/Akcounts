@@ -32,7 +32,7 @@
                                 <TextBlock VerticalAlignment="Top"
 								           HorizontalAlignment="Right"
 								           Margin="2"
-								           Text="{Binding Status}" />
+								           Text="{Binding OpenChildren}" />
                             </Grid>
                         </Button>
                     </DataTemplate>

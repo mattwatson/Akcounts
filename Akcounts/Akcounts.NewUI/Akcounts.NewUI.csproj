@@ -64,6 +64,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Accounts\AccountsWorkspaceViewModel.cs" />
+    <Compile Include="Accounts\AccountViewModel.cs" />
+    <Compile Include="Framework\IDocumentWorkspace.cs" />
+    <Compile Include="Framework\DocumentWorkspaceState.cs" />
+    <Compile Include="Framework\DocumentWorkspace.cs" />
     <Compile Include="Framework\IWorkspace.cs" />
     <Compile Include="MainWindow\AkcountsBootstrapper.cs" />
     <Compile Include="App.xaml.cs">
@@ -92,6 +96,18 @@
     <Page Include="Accounts\AccountsWorkSpaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Accounts\AccountsWorkspace\Detail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Accounts\AccountsWorkspace\Master.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Accounts\AccountView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow\MainWindowView.xaml">
       <SubType>Designer</SubType>

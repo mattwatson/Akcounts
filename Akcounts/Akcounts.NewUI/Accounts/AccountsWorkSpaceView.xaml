@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro">
     <Border BorderBrush="#FF590980"
+            Background="BlueViolet"
 	        BorderThickness="2">
         <DockPanel>
             <Border BorderBrush="#FF590980"
@@ -15,15 +16,10 @@
 				           FontSize="20" />
             </Border>
 
-            <TextBlock Foreground="White"
-			           Margin="12"
-			           FontSize="20"
-			           Text="Accounts go here..." />
-
-            <!--<ContentControl cal:View.Context="{Binding State, Mode=TwoWay}"
+            <ContentControl cal:View.Context="{Binding State, Mode=TwoWay}"
                             cal:View.Model="{Binding}" 
                             Margin="20"
-                            Padding="20"/>-->
+                            Padding="20"/>
         </DockPanel>
     </Border>
 </UserControl>

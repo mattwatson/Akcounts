@@ -1,35 +1,37 @@
 ﻿using System.ComponentModel.Composition;
 using Akcounts.NewUI.Framework;
-using Caliburn.Micro;
 
 namespace Akcounts.NewUI.Accounts
 {
     [Export(typeof(IWorkspace))]
-    class AccountsWorkspaceViewModel : Screen, IWorkspace
+    class AccountsWorkspaceViewModel : DocumentWorkspace<AccountViewModel>
     {
-        public AccountsWorkspaceViewModel()
-        {
-            DisplayName = Label;
-        }
-
-        public string Label
+        public override string Label
         {
             get { return "Accounts"; }
         }
 
-        public string Icon
+        public override string Icon
         {
             get { return "../Accounts/Resources/Images/account48.png"; }
         }
 
-        public string Status
-        {
-            get { return string.Empty; }
-        }
-
-        public void Show()
-        {
-            ((IConductor)Parent).ActivateItem(this);
-        }
+        //TODO put 'new' logic in here like this:
+        //private static int count = 1;
+        //private readonly Func<OrderViewModel> createOrderViewModel;
+        //
+        //[ImportingConstructor]
+        //public OrdersWorkspaceViewModel(Func<OrderViewModel> orderVMFactory)
+        //{
+        //    createOrderViewModel = orderVMFactory;
+        //}
+        //
+        //public void New()
+        //{
+        //    var vm = createAccountViewModel();
+        //    vm.DisplayName = "Account " + count++;
+        //    vm.IsDirty = true;
+        //    Edit(vm);
+        //}
     }
 }

@@ -4,7 +4,7 @@
     {
         string Label { get; }
         string Icon { get; }
-        string Status { get; }
+        string OpenChildren { get; }
 
         void Show();
     }
