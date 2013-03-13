@@ -55,17 +55,17 @@ namespace Akcounts.NewUI.MainWindow
         {
             if (String.IsNullOrEmpty(key) == false)
             {
-                throw new Exception("GetInstance using a String is not supported. Use an interface instead.");
+                throw new Exception("GetInstance using a String is not supported. Use a type instead.");
             }
 
-            var export = _container.GetInstance(serviceType);
+            var instance = _container.GetInstance(serviceType);
 
-            if (export == null)
+            if (instance == null)
             {
-                throw new Exception(string.Format("Could not locate any instances of contract {0}.", serviceType));
+                throw new Exception(string.Format("Could not locate any instances of type {0}.", serviceType));
             }
             
-            return export;
+            return instance;
         }
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)

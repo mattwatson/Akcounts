@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Globalization;
 using Caliburn.Micro;
 
 namespace Akcounts.NewUI.Framework
@@ -37,7 +38,7 @@ namespace Akcounts.NewUI.Framework
 
         public string OpenChildren
         {
-            get { return Items.Count > 0 ? Items.Count.ToString() : string.Empty; }
+            get { return Items.Count > 0 ? Items.Count.ToString(CultureInfo.InvariantCulture) : string.Empty; }
         }
 
         public void Show()
