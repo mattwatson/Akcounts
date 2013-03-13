@@ -71,7 +71,7 @@ namespace Akcounts.DataAccess.Tests
             using (XmlReader accountXml = new XmlTextReader(accountStringReader))
             {
                 XElement accounts = XElement.Load(accountXml);
-                _repository = new AccountRepository(accounts, _mockAccountTagRepository);
+                _repository = new AccountRepository(_mockAccountTagRepository);
             }
 
             _account6.AddTag(_accountTag3);

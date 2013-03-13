@@ -14,17 +14,12 @@ namespace Akcounts.DataAccess.Repositories
         public AccountRepository(IAccountTagRepository accountTagRepository)
         {
             _accountTagRepository = accountTagRepository;
+            InitialiseRepository("Data/accounts.xml");
         }
 
-        public AccountRepository(string accountDataPath, IAccountTagRepository accountTagRepository)
+        public void Initialise(string accountDataPath, IAccountTagRepository accountTagRepository)
         {
-            _accountTagRepository = accountTagRepository;
             InitialiseRepository(accountDataPath);
-        }
-
-        public AccountRepository(XElement accountsXml, IAccountTagRepository accountTagRepository) : this (accountTagRepository)
-        {
-            Initialise(accountsXml);
         }
 
         protected override sealed void Initialise(XElement xElement)

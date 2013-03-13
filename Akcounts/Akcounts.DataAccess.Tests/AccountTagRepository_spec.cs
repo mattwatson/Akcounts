@@ -40,7 +40,7 @@ namespace Akcounts.DataAccess.Tests
             using (XmlReader accountTagXml = new XmlTextReader(accountTagStringReader))
             {
                 XElement accountTags = XElement.Load(accountTagXml);
-                _repository = new AccountTagRepository(accountTags);
+                _repository = new AccountTagRepository();
             }
         }
 

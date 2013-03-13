@@ -34,8 +34,8 @@ namespace Akcounts.UI
 
         private void InitialiseRepositories()
         {
-            _accountTagRepository = new AccountTagRepository(AccountTagDataPath);
-            _accountRepository = new AccountRepository(AccountDataPath, _accountTagRepository);
+            //_accountTagRepository = new AccountTagRepository(AccountTagDataPath);
+            //_accountRepository = new AccountRepository(AccountDataPath, _accountTagRepository);
             _journalRepository = new JournalRepository(JournalDataPath, _accountRepository);
             _templateRepository = new TemplateRepository(TemplateDataPath, _accountRepository);
         }

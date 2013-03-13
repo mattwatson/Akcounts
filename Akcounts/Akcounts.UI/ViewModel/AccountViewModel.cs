@@ -11,7 +11,6 @@ using System.Windows;
 
 namespace Akcounts.UI.ViewModel
 {
-
     public class AccountViewModel : DeletableViewModel, IDataErrorInfo
     {
         private readonly Account _account;

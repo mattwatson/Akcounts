@@ -29,7 +29,7 @@ namespace Akcounts.MigrationTool
             using (XmlReader accountTagXml = new XmlTextReader(accountTagStream))
             {
                 XElement accountTags = XElement.Load(accountTagXml);
-                return new AccountTagRepository(accountTags);
+                return new AccountTagRepository();
             }
         }
 
@@ -39,7 +39,7 @@ namespace Akcounts.MigrationTool
             using (XmlReader accountXml = new XmlTextReader(accountStream))
             {
                 XElement accounts = XElement.Load(accountXml);
-                return new AccountRepository(accounts, accountTagRepository);
+                return new AccountRepository(accountTagRepository);
             }
         }
 

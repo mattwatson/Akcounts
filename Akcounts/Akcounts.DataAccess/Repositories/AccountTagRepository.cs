@@ -9,14 +9,14 @@ namespace Akcounts.DataAccess.Repositories
     {
         private int _maxId;
         
-        public AccountTagRepository(XElement accountTags)
-        {
-            Initialise(accountTags);
-        }
+        //public AccountTagRepository(XElement accountTags)
+        //{
+        //    Initialise(accountTags);
+        //}
 
-        public AccountTagRepository(string accountTagDataPath)
+        public AccountTagRepository()
         {
-            InitialiseRepository(accountTagDataPath);
+            InitialiseRepository("Data/accountTags.xml");
         }
 
         protected override sealed void Initialise(XElement xElement)

@@ -1,24 +1,34 @@
 ﻿using System;
-using System.ComponentModel.Composition;
+using System.Globalization;
 using System.Linq;
+using Akcounts.DataAccess.Repositories;
+using Akcounts.Domain.Objects;
+using Akcounts.Domain.RepositoryInterfaces;
 using Akcounts.NewUI.Framework;
 using Caliburn.Micro;
 
 namespace Akcounts.NewUI.Accounts
 {
-    [Export(typeof(IWorkspace))]
     class AccountsWorkspaceViewModel : DocumentWorkspace<AccountViewModel>
     {
         private static int count = 1;
-        private readonly Func<AccountViewModel> createAccountViewModel;
+        
+        private readonly IAccountRepository _accountRepository;
+        private readonly IObservableCollection<AccountViewModel> _accounts = new BindableCollection<AccountViewModel>();
 
-        private IObservableCollection<AccountViewModel> _accounts;
-
-        [ImportingConstructor]
-        public AccountsWorkspaceViewModel(Func<AccountViewModel> accountVMFactory)
+        public AccountsWorkspaceViewModel(IAccountRepository accountRepository)
         {
-           createAccountViewModel = accountVMFactory;
-           CreateDummyData();
+            _accountRepository = accountRepository;
+        }
+
+        public Func<Account, AccountViewModel> CreateAccountViewModel { get; set; }
+
+        public void InitialiseAccountViewModels()
+        {
+            foreach (var account in _accountRepository.GetAll())
+            {
+                CreateAccountVm(account);
+            }
         }
 
         public override string Label
@@ -33,10 +43,8 @@ namespace Akcounts.NewUI.Accounts
         
         public void New()
         {
-            var vm = createAccountViewModel();
-            vm.DisplayName = "Account " + count++;
-
-            InsertVmToAccountsInOrder(vm);
+            var account = new Account(0, count++.ToString(CultureInfo.InvariantCulture), AccountType.Asset);
+            var vm = CreateAccountVm(account);
             Edit(vm);
         }
 
@@ -54,35 +62,14 @@ namespace Akcounts.NewUI.Accounts
             }
         }
 
-        private void CreateDummyData()
+        private AccountViewModel CreateAccountVm(Account account)
         {
-            var random = new Random();
+            var vm = CreateAccountViewModel(account);
+            //var vm = new AccountViewModel(_accountRepository, new AccountTagRepository());
+            vm.DisplayName = account.Name;
 
-            _accounts = new BindableCollection<AccountViewModel>();
-
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-            CreateAccountVm(random);
-        }
-
-        private void CreateAccountVm(Random random)
-        {
-            var vm = createAccountViewModel();
-            vm.DisplayName = "Account " + random.Next(100);
             InsertVmToAccountsInOrder(vm);
+            return vm;
         }
     }
 }

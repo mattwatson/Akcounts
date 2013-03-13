@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.ComponentModel.Composition.Hosting;
-using System.Linq;
+using Akcounts.DataAccess.Repositories;
+using Akcounts.Domain.Objects;
+using Akcounts.Domain.RepositoryInterfaces;
 using Akcounts.NewUI.Accounts;
 using Akcounts.NewUI.Framework;
 using Akcounts.NewUI.Utils;
 using Caliburn.Micro;
+using SimpleInjector;
 
 namespace Akcounts.NewUI.MainWindow
 {
     public class AkcountsBootstrapper : Bootstrapper<IMainWindow>
     {
-        private CompositionContainer _container;
+        private Container _container;
 
         static AkcountsBootstrapper()
         {
@@ -21,28 +22,47 @@ namespace Akcounts.NewUI.MainWindow
 
         protected override void Configure()
         {
-            var assemblyCatalog = AssemblySource.Instance.Select(x => new AssemblyCatalog(x));
-            _container = new CompositionContainer(new AggregateCatalog(assemblyCatalog));
+            _container = new Container();
             
-            var batch = new CompositionBatch();
-            batch.AddExportedValue<IWindowManager>(new WindowManager());
-            batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-            
-            batch.AddExportedValue<Func<AccountViewModel>>(() => _container.GetExportedValue<AccountViewModel>());
-            
-            batch.AddExportedValue(_container);
+            _container.RegisterSingle<IWindowManager, WindowManager>();
+            _container.RegisterSingle<IEventAggregator, EventAggregator>();
 
-            _container.Compose(batch);
+            _container.RegisterSingle<IMainWindow, MainWindowViewModel>();
+            
+            _container.RegisterAll<IWorkspace>(typeof(AccountsWorkspaceViewModel));
+            _container.RegisterInitializer<AccountsWorkspaceViewModel>(x =>
+                                                                           {
+                                                                               x.CreateAccountViewModel = CreateAccountViewModel;
+                                                                               x.InitialiseAccountViewModels();
+                                                                           });
+
+            _container.Register<AccountViewModel>();
+
+            _container.RegisterSingle<IAccountTagRepository, AccountTagRepository>();
+            _container.RegisterSingle<IAccountRepository, AccountRepository>();
+
+            _container.Verify();
+        }
+
+        private AccountViewModel CreateAccountViewModel(Account account)
+        {
+            var vm = _container.GetInstance<AccountViewModel>();
+            vm.SetAccount(account);
+            return vm;
         }
 
         protected override object GetInstance(Type serviceType, string key)
         {
-            string contract = string.IsNullOrEmpty(key) ? AttributedModelServices.GetContractName(serviceType) : key;
-            var export = _container.GetExportedValues<object>(contract).FirstOrDefault();
+            if (String.IsNullOrEmpty(key) == false)
+            {
+                throw new Exception("GetInstance using a String is not supported. Use an interface instead.");
+            }
+
+            var export = _container.GetInstance(serviceType);
 
             if (export == null)
             {
-                throw new Exception(string.Format("Could not locate any instances of contract {0}.", contract));
+                throw new Exception(string.Format("Could not locate any instances of contract {0}.", serviceType));
             }
             
             return export;
@@ -50,14 +70,9 @@ namespace Akcounts.NewUI.MainWindow
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return _container.GetExportedValues<object>(AttributedModelServices.GetContractName(serviceType));
+            return _container.GetAllInstances(serviceType);
         }
-
-        protected override void BuildUp(object instance)
-        {
-            _container.SatisfyImportsOnce(instance);
-        }
-
+		
         //TODO could put close confirmation logic in here. See HellowScreens sample for an example.
     }
 }
